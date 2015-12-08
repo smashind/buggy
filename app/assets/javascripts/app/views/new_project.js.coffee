@@ -5,8 +5,12 @@ class App.Views.NewProject extends Backbone.View
   events:
     "click button": "saveProject"
 
+  initialize: ->
+    @listenTo @model, 'sync', @render
+    @model.fetch() unless @model.isNew()
+
   render: ->
-    @$el.html(@template())
+    @$el.html(@template(@model.toJSON()))
     @
 
   saveProject: (e) ->

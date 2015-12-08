@@ -17,6 +17,22 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 	end
 
+	def destroy
+		@project = Project.find(params[:id])
+		@project.destroy
+		respond_to do |format|
+			format.json { render json: @project }
+		end
+	end
+
+	def update
+		@project = Project.find(params[:id])
+		@project.update_attributes(project_params)
+		respond_to do |format|
+			format.json { render json: @project }
+		end
+	end
+
 	private
 
 	  def project_params
