@@ -6,10 +6,10 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
-		if @project.save
-			respond_to do |format|
-				format.json { render json: @project }
-			end
+	  if @project.save
+		  render json: @project
+		else
+			render json: { errors: @project.errors }, status: :unprocessable_entity
 		end
 	end
 
@@ -20,16 +20,15 @@ class ProjectsController < ApplicationController
 	def destroy
 		@project = Project.find(params[:id])
 		@project.destroy
-		respond_to do |format|
-			format.json { render json: @project }
-		end
+		render json: @project
 	end
 
 	def update
 		@project = Project.find(params[:id])
-		@project.update_attributes(project_params)
-		respond_to do |format|
-			format.json { render json: @project }
+		if @project.update(project_params)
+		  render json: @project
+		else
+			render json: { errors: @project.errors }, status: :unprocessable_entity
 		end
 	end
 
