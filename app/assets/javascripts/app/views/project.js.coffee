@@ -5,6 +5,11 @@ class App.Views.Project extends Backbone.View
   initialize: ->
     @listenTo @model, 'destroy', @remove
     @listenTo @model, 'change:name', @render
+    @listenTo App.Vent, 'issues:change', @updateCounter
+
+  updateCounter: (model, count) ->
+    if model.get('project_id') is @model.id
+      @$('span.badge').text(count)
 
   events:
     "click a": "showDetails"

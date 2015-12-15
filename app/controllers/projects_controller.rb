@@ -5,11 +5,11 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		@project = Project.new(project_params)
-	  if @project.save
-		  render json: @project
+		project = Project.new(project_params)
+	  if project.save
+		  render json: project
 		else
-			render json: { errors: @project.errors }, status: :unprocessable_entity
+			render json: { errors: project.errors }, status: :unprocessable_entity
 		end
 	end
 
