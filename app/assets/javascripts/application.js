@@ -17,3 +17,4 @@
 //= require ./lib/backbone
 //= require ./lib/backbone_leave
 //= require ./app/buggy
+//= require bootstrap-sprockets

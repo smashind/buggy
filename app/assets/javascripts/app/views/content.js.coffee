@@ -14,6 +14,11 @@ class App.Views.Content extends Backbone.View
     @listenTo App.Vent, "project:show", @projectShow
     @listenTo App.Vent, "project:destroy", @swapMainToEmpty
     @listenTo App.Vent, "project:edit", @editProject
+    @listenTo App.Vent, "user:logged_in", @swapMainToEmpty
+    @listenTo App.Vent, "user:logged_out", @goHome
+
+  goHome: ->
+    alert "Successfully logged out"
 
   editProject: (model) ->
     @swapMain(new App.Views.NewProject({ model: model }))
@@ -24,7 +29,7 @@ class App.Views.Content extends Backbone.View
 
   swapMainToEmpty: ->
     @swapMain(new App.Views.Empty())
-    Backbone.history.navigate("/projects")
+    @swapSide(new App.Views.Projects({ collection: new App.Collections.Projects }))
 
   swapMainToNewProject: ->
     @swapMain(new App.Views.NewProject({ model: new App.Models.Project }))
