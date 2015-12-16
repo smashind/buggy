@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-
+  before_filter :authenticated, only: [ :create ]
+  before_filter :owner, only: [ :update, :destroy ]
 	def index
 		@projects = Project.all
 	end
@@ -18,13 +19,11 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
-		@project = Project.find(params[:id])
 		@project.destroy
 		render json: @project
 	end
 
 	def update
-		@project = Project.find(params[:id])
 		if @project.update(project_params)
 		  render json: @project
 		else
@@ -36,5 +35,18 @@ class ProjectsController < ApplicationController
 
 	  def project_params
 	  	params.require(:project).permit(:name, :description)
+	  end
+
+	  def authenticated
+	  	if cannot? :create, Project
+	  		render status: :forbidden, text: "Forbidden"
+	  	end
+	  end
+
+	  def owner
+	  	@project = Project.find(params[:id])
+	  	if cannot? params[:action].to_sym, @project
+	  		render status: :forbidden, text: "Forbidden"
+	  	end
 	  end
 end

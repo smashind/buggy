@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 gem 'handlebars_assets', '~> 0.12.0'
 gem 'sprockets', '2.11.0'
 gem 'sorcery'
+gem 'cancancan'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
