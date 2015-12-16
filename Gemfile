@@ -13,6 +13,8 @@ gem 'sprockets', '2.11.0'
 gem 'sorcery'
 gem 'cancancan'
 
+gem 'i18n-js'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

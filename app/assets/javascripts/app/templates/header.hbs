@@ -7,19 +7,19 @@
 		  <span class="icon-bar"></span>
 	  </button>
     
-    <a href="/" class="navbar-brand">Buggy</a>
+    <a href="/" class="navbar-brand">{{t "brand" }}</a>
   </div>
 
   <div class="navbar-collapse collapse" id="navbar">	      
 	  <ul class="nav navbar-nav navbar-left">
-      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#projects">{{t "projects" }}</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       {{#if current_user}}
-      <li><a href="/#logout">Logout</a></li>
+      <li><a href="/#logout">{{t "logout" }}</a></li>
       {{else}}
-      <li><a href="/#login">Login</a></li>
+      <li><a href="/#login">{{t "login" }}</a></li>
       {{/if}}
     </ul>
   </div>
