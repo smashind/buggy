@@ -8,5 +8,5 @@
   <% else %>
     var current_user = { loggedIn: false };
   <% end %>
-  App.initialize({ current_user: current_user });
+  App.initialize({ current_user: current_user, date: <%= Time.now.year %> });
 <% end %>

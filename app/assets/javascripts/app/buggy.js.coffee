@@ -20,5 +20,6 @@ window.App =
   Vent: _.clone(Backbone.Events)
   initialize: (data) ->
     App.currentUser = new App.Models.CurrentUser(data.current_user)
+    App.date = data.date
     new App.Routers.MainRouter()
     Backbone.history.start()
